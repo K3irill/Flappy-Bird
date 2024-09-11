@@ -5,8 +5,8 @@ export default class Pipe {
     this.gapHeight = 200;
     this.speed = 2;
     this.passed = false;
-    this.topHeight = Math.random() * (canvas.height / 2) + 50; 
-    this.bottomHeight = canvas.height - this.topHeight - this.gapHeight; 
+    this.topHeight = Math.random() * (canvas.height / 2) + 50;
+    this.bottomHeight = canvas.height - this.topHeight - this.gapHeight;
     this.sprite = new Image();
     this.sprite.src = "assets/img/pipe.png";
   }
