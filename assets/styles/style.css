@@ -14,3 +14,16 @@ canvas {
   background: url("assets/img/background.jpg");
   background-size: cover;
 }
+
+#scoreBoard {
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
