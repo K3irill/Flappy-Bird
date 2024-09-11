@@ -1,7 +1,7 @@
 export default class Pipe {
   constructor(x, canvas) {
     this.x = x;
-    this.width = 68;
+    this.width = 48;
     this.gapHeight = 200;
     this.speed = 2;
     this.passed = false;

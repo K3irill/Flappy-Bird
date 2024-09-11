@@ -1,3 +1,6 @@
+*{
+  font-family: 'Pixelify Sans';
+}
 body {
   font-family: Arial, sans-serif;
   display: flex;
@@ -8,17 +11,23 @@ body {
   margin: 0;
   background: url(https://steamuserimages-a.akamaihd.net/ugc/261587814217267015/5E489394D51D622211B7045A97535B845D1AA282/?imw=512&amp;imh=319&amp;ima=fit&amp;impolicy=Letterbox&amp;imcolor=%23000000&amp;letterbox=true) no-repeat;
   background-size: cover;
+  
 }
 
 canvas {
+  position: relative;
   border: 2px solid #000;
   background: url("/assets/img/background.jpg");
   background-size: cover;
 }
 
-#scoreBoard {
+#scoreContainer {
+
     margin-top: 10px;
     text-align: center;
+    z-index: 1000;
+    color: white;
+    margin-bottom: -20px;
   }
   
   button {
@@ -26,5 +35,10 @@ canvas {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+    background-color: rgba(255, 69, 162, 0.856);
+    color: white;
   }
-  
+#level{
+  color: rgb(0, 225, 255);
+  text-transform: uppercase;
+}

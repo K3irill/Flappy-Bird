@@ -1,23 +1,46 @@
 export default class ScoreManager {
   constructor() {
-    this.currentScore = 0;
-    this.bestScore = localStorage.getItem("bestScore") || 0;
+    this.score = 0;
+    this.highScore = localStorage.getItem("highScore") || 0;
+    this.currentLevel = 1;
+    this.updateHighScore();
   }
 
   updateScore() {
-    this.currentScore++;
-    if (this.currentScore > this.bestScore) {
-      this.bestScore = this.currentScore;
-      localStorage.setItem("bestScore", this.bestScore);
+    this.score++;
+    if (this.score > this.highScore) {
+      this.highScore = this.score;
+      this.updateHighScore();
+    }
+
+    if (this.score >= 20 && this.score < 35) {
+      this.currentLevel = 2;
+    } else if (this.score >= 35 && this.score < 60) {
+      this.currentLevel = 3;
+    } else if (this.score >= 60 && this.score < 100) {
+      this.currentLevel = 4;
+    } else if (this.score >= 100) {
+      this.currentLevel = 5;
     }
   }
 
+  updateHighScore() {
+    localStorage.setItem("highScore", this.highScore);
+  }
+
   render() {
-    document.getElementById("currentScore").textContent = this.currentScore;
-    document.getElementById("bestScore").textContent = this.bestScore;
+    document.getElementById("score").textContent = `Score: ${this.score}`;
+    document.getElementById(
+      "highScore"
+    ).textContent = `High Score: ${this.highScore}`;
+    document.getElementById(
+      "level"
+    ).textContent = `Level: ${this.currentLevel}`;
   }
 
   reset() {
-    this.currentScore = 0;
+    this.score = 0;
+    this.currentLevel = 1;
+    this.render();
   }
 }

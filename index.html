@@ -4,16 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Flappy Bird</title>
-    <link rel="stylesheet" href="assets/styles/style.css">
+    <link rel="stylesheet" href="assets/styles/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Pixelify+Sans:regular,500,600,700"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <canvas id="gameCanvas" width="400" height="600"></canvas>
-    <div id="scoreBoard">
-      <p>Current Score: <span id="currentScore">0</span></p>
-      <p>Best Score: <span id="bestScore">0</span></p>
+    <div id="scoreContainer">
+      <div id="score">Score: 0</div>
+      <div id="highScore">High Score: 0</div>
+      <div id="level">Level: 1</div>
     </div>
-
-    <button id="restartButton">Restart Game</button>
+    <canvas id="gameCanvas" width="400" height="600"></canvas>
+    <button id="restartButton">Restart</button>
 
     <script type="module" src="scripts/components/game.js"></script>
   </body>
