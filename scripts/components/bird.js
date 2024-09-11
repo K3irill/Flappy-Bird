@@ -2,8 +2,8 @@ export default class Bird {
     constructor() {
       this.x = 50;
       this.y = 150;
-      this.width = 34;
-      this.height = 24;
+      this.width = 54;
+      this.height = 44;
       this.velocity = 0;
       this.gravity = 0.5;
       this.jumpForce = -10;

@@ -5,18 +5,29 @@ export default class Pipe {
     this.gapHeight = 200;
     this.speed = 2;
     this.passed = false;
-    this.topHeight = Math.random() * (canvas.height / 2) + 50;
-    this.bottomHeight = canvas.height - this.topHeight - this.gapHeight;
+    this.topHeight = Math.random() * (canvas.height / 2) + 50;  
+    this.bottomHeight = canvas.height - this.topHeight - this.gapHeight;  
     this.sprite = new Image();
     this.sprite.src = "assets/img/pipe.png";
   }
 
   update() {
-    this.x -= this.speed;
+    this.x -= this.speed; 
   }
 
   render(ctx) {
-    ctx.drawImage(this.sprite, this.x, 0, this.width, this.topHeight);
+
+    ctx.save(); 
+    ctx.scale(1, -1);  
+    ctx.drawImage(
+      this.sprite,
+      this.x,
+      -this.topHeight,
+      this.width,
+      this.topHeight
+    );
+    ctx.restore(); 
+
 
     ctx.drawImage(
       this.sprite,
@@ -28,6 +39,7 @@ export default class Pipe {
   }
 
   checkCollision(bird, canvasHeight) {
+
     const hitTopPipe =
       bird.x + bird.width > this.x &&
       bird.x < this.x + this.width &&
