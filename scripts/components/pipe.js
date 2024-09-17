@@ -1,8 +1,8 @@
 export default class Pipe {
   constructor(x, canvas) {
     this.x = x;
-    this.width = 48;
-    this.gapHeight = 200;
+    this.width = 58;
+    this.gapHeight = 250;
     this.speed = 2;
     this.passed = false;
     this.topHeight = Math.random() * (canvas.height / 2) + 50;  

@@ -1,6 +1,6 @@
-import Bird from './bird.js';
-import Pipe from './pipe.js';
-import ScoreManager from './scoreManager.js';
+import Bird from "./bird.js";
+import Pipe from "./pipe.js";
+import ScoreManager from "./scoreManager.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const canvas = document.getElementById("gameCanvas");
@@ -11,29 +11,29 @@ document.addEventListener("DOMContentLoaded", () => {
   const scoreManager = new ScoreManager();
   let isGameOver = false;
   let currentLevel = 1;
-  let isMusicStarted = false; 
+  let isMusicStarted = false;
 
   const levelMusic = [
-    new Audio('assets/audio/level1.mp3'),
-    new Audio('assets/audio/level2.mp3'),
-    new Audio('assets/audio/level3.mp3'),
-    new Audio('assets/audio/level4.mp3'),
-    new Audio('assets/audio/level5.mp3')
+    new Audio("assets/audio/level1.mp3"),
+    new Audio("assets/audio/level2.mp3"),
+    new Audio("assets/audio/level3.mp3"),
+    new Audio("assets/audio/level4.mp3"),
+    new Audio("assets/audio/level5.mp3"),
   ];
 
   function stopMusic() {
-    levelMusic.forEach(music => {
+    levelMusic.forEach((music) => {
       music.pause();
       music.currentTime = 0;
     });
   }
 
   function playMusic(level) {
-    stopMusic(); 
-    const music = levelMusic[level - 1]; 
+    stopMusic();
+    const music = levelMusic[level - 1];
     if (music) {
       music.play();
-      music.loop = true; 
+      music.loop = true;
     }
   }
 
@@ -44,11 +44,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function update() {
-    if (isGameOver) return; 
+    if (isGameOver) return;
 
     frame++;
     bird.update();
-    pipes.forEach(pipe => pipe.update());
+    pipes.forEach((pipe) => pipe.update());
 
     pipes.forEach((pipe, index) => {
       if (pipe.x + pipe.width < 0) {
@@ -56,12 +56,12 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    createPipes(); 
+    createPipes();
 
-    pipes.forEach(pipe => {
+    pipes.forEach((pipe) => {
       if (pipe.checkCollision(bird, canvas.height)) {
         isGameOver = true;
-        stopMusic(); 
+        stopMusic();
       }
 
       if (!pipe.passed && pipe.x < bird.x) {
@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (bird.y + bird.height >= canvas.height) {
       isGameOver = true;
-      stopMusic(); 
+      stopMusic();
     }
 
     scoreManager.render();
@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function render() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     bird.render(ctx);
-    pipes.forEach(pipe => pipe.render(ctx));
+    pipes.forEach((pipe) => pipe.render(ctx));
   }
 
   function gameLoop() {
@@ -104,20 +104,32 @@ document.addEventListener("DOMContentLoaded", () => {
     scoreManager.reset();
     isGameOver = false;
     frame = 0;
-    isMusicStarted = false; 
-    currentLevel = 1; 
-    stopMusic(); 
-    gameLoop(); 
+    isMusicStarted = false;
+    currentLevel = 1;
+    stopMusic();
+    gameLoop();
   });
 
   canvas.addEventListener("click", () => {
     bird.jump();
 
     if (!isMusicStarted) {
-      playMusic(currentLevel); 
+      playMusic(currentLevel);
       isMusicStarted = true;
     }
   });
 
-  gameLoop(); 
+  document.addEventListener("keydown", (event) => {
+    event.preventDefault();
+    if (event.code === "Space") {
+      bird.jump();
+
+      if (!isMusicStarted) {
+        playMusic(currentLevel);
+        isMusicStarted = true;
+      }
+    }
+  });
+
+  gameLoop();
 });
